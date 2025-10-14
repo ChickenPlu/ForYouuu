@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ebe có yêu tớ hongg..?</title>
+  <title>Em ngiu có yêu tớ hongg..?</title>
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
@@ -69,7 +69,7 @@
 </head>
 <body>
   <div class="question-container">
-    <h2>Ebe có yêu tớ hongg..? 💖</h2>
+    <h2>Em ngiu có yêu tớ hongg..? 💖</h2>
     <button id="yesBtn">Cóo 🥰</button>
     <button id="noBtn">Không 😜</button>
 
