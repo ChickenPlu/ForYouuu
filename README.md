@@ -1,4 +1,4 @@
-# Hello bae
+#hello baee
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
@@ -27,13 +27,14 @@
       margin-bottom: 30px;
     }
 
-    .buttons {
+    .button-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 40px;
-      margin-top: 40px;
+      gap: 40px; /* khoảng cách giữa 2 nút */
       position: relative;
+      width: 100%;
+      margin-top: 20px;
     }
 
     button {
@@ -80,9 +81,9 @@
   </style>
 </head>
 <body>
-  <h2>Ebe có yêu anh hongg..? 💖</h2>
+  <h2>Ebe có yêu anh hongg..?💖</h2>
 
-  <div class="buttons">
+  <div class="button-container">
     <button id="yesBtn">Dạ Có 🥰</button>
     <button id="noBtn">Không thèmm 😜</button>
   </div>
@@ -100,21 +101,22 @@
       const btnWidth = noBtn.offsetWidth;
       const btnHeight = noBtn.offsetHeight;
 
-      // Giới hạn vùng di chuyển (tránh bay khỏi màn hình)
-      const maxX = window.innerWidth - btnWidth - 50;
-      const maxY = window.innerHeight - btnHeight - 150; // trừ khoảng trên/dưới
-      const minX = 20;
+      // Giới hạn vùng di chuyển trong cửa sổ
+      const maxX = window.innerWidth - btnWidth - 20;
+      const maxY = window.innerHeight - btnHeight - 20;
+      const minX = 10;
       const minY = 80;
 
       const newX = Math.random() * (maxX - minX) + minX;
       const newY = Math.random() * (maxY - minY) + minY;
 
+      // Chuyển sang vị trí tuyệt đối
       noBtn.style.position = "absolute";
       noBtn.style.left = `${newX}px`;
       noBtn.style.top = `${newY}px`;
     }
 
-    // Khi rê hoặc chạm vào nút "Không" → chạy trốn
+    // Khi rê chuột hoặc chạm vào nút "Không" → chạy trốn
     noBtn.addEventListener("mouseover", moveNoBtn);
     noBtn.addEventListener("touchstart", (e) => {
       e.preventDefault();
