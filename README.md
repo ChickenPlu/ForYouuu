@@ -35,14 +35,14 @@
       justify-content: center;
     }
 
-    /* Hàng chứa 2 nút */
     .button-row {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 80px; /* 👈 tăng khoảng cách giữa hai nút */
+      gap: 80px;
       flex-wrap: wrap;
       margin-top: 10px;
+      position: relative;
     }
 
     button {
@@ -59,13 +59,15 @@
     #yesBtn {
       background-color: #4caf50;
       color: white;
+      position: relative;
+      z-index: 5;
     }
 
     #noBtn {
       background-color: #f44336;
       color: white;
+      position: absolute;
       z-index: 10;
-      position: relative;
     }
 
     .heart-loader, .result-container {
@@ -85,7 +87,7 @@
       h2 { font-size: 28px; }
       button { font-size: 20px; padding: 12px 30px; }
       .heart-loader, .result-container { font-size: 24px; }
-      .button-row { gap: 60px; } /* 👈 trên PC cách vừa hơn */
+      .button-row { gap: 60px; }
     }
   </style>
 </head>
@@ -93,7 +95,7 @@
   <div class="question-container">
     <h2>Ebe có yêu anh hongg..?💖</h2>
 
-    <div class="button-row">
+    <div class="button-row" id="buttonRow">
       <button id="yesBtn">Dạ Có 🥰</button>
       <button id="noBtn">Không thèmm 😜</button>
     </div>
@@ -107,13 +109,20 @@
     const yesBtn = document.getElementById("yesBtn");
     const heartLoader = document.querySelector(".heart-loader");
     const resultContainer = document.querySelector(".result-container");
+    const buttonRow = document.getElementById("buttonRow");
 
     function moveNoBtn() {
-      const maxX = window.innerWidth - noBtn.offsetWidth - 20;
-      const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+      const parentRect = buttonRow.getBoundingClientRect();
+      const btnWidth = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
+
+      // Giới hạn nút đỏ trong khu vực buttonRow (cách mép 10px)
+      const maxX = parentRect.width - btnWidth - 10;
+      const maxY = parentRect.height - btnHeight - 10;
+
       const newX = Math.random() * maxX;
       const newY = Math.random() * maxY;
-      noBtn.style.position = "absolute";
+
       noBtn.style.left = `${newX}px`;
       noBtn.style.top = `${newY}px`;
     }
@@ -135,9 +144,6 @@
         resultContainer.style.display = "block";
       }, 2000);
     });
-  </script>
-</body>
-</html>
   </script>
 </body>
 </html>
