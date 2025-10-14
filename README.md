@@ -90,7 +90,7 @@
 
   <div class="button-area" id="buttonArea">
     <button id="yesBtn">Dạ Có 🥰</button>
-    <button id="noBtn">Không thèmm 😜</button>
+    <button id="noBtn">Không thèm 😜</button>
   </div>
 
   <div class="heart-loader">Cám ơn bé nhaaa 💞</div>
