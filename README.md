@@ -1,4 +1,4 @@
-Chao bé Yêu nhaaaa
+# Chao bé Yêu nhaaaa
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,9 +6,7 @@ Chao bé Yêu nhaaaa
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ebe có yêu anh hongg..?</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: "Segoe UI", sans-serif;
@@ -21,7 +19,7 @@ Chao bé Yêu nhaaaa
       align-items: center;
       justify-content: center;
       text-align: center;
-      touch-action: none; /* Ngăn zoom/kéo trang khi chạm */
+      touch-action: none;
     }
 
     h2 {
@@ -34,7 +32,7 @@ Chao bé Yêu nhaaaa
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 40px; /* khoảng cách giữa 2 nút */
+      gap: 40px;
       margin-top: 40px;
       position: relative;
     }
@@ -76,16 +74,9 @@ Chao bé Yêu nhaaaa
     }
 
     @media (min-width: 768px) {
-      h2 {
-        font-size: 28px;
-      }
-      button {
-        font-size: 18px;
-      }
-      .heart-loader,
-      .result-container {
-        font-size: 24px;
-      }
+      h2 { font-size: 28px; }
+      button { font-size: 18px; }
+      .heart-loader, .result-container { font-size: 24px; }
     }
   </style>
 </head>
@@ -94,7 +85,7 @@ Chao bé Yêu nhaaaa
 
   <div class="buttons">
     <button id="yesBtn">Dạ Có 🥰</button>
-    <button id="noBtn">Không thèm 😜</button>
+    <button id="noBtn">Không thèmm 😜</button>
   </div>
 
   <div class="heart-loader">Cám ơn bé nhaaa 💞</div>
@@ -107,10 +98,18 @@ Chao bé Yêu nhaaaa
     const resultContainer = document.querySelector(".result-container");
 
     function moveNoBtn() {
-      const maxX = window.innerWidth - noBtn.offsetWidth - 20;
-      const maxY = window.innerHeight - noBtn.offsetHeight - 20;
-      const newX = Math.random() * maxX;
-      const newY = Math.random() * maxY;
+      const btnWidth = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
+
+      // Giới hạn vùng di chuyển (tránh bay khỏi màn hình)
+      const maxX = window.innerWidth - btnWidth - 50;
+      const maxY = window.innerHeight - btnHeight - 150; // trừ khoảng trên/dưới
+      const minX = 20;
+      const minY = 80;
+
+      const newX = Math.random() * (maxX - minX) + minX;
+      const newY = Math.random() * (maxY - minY) + minY;
+
       noBtn.style.position = "absolute";
       noBtn.style.left = `${newX}px`;
       noBtn.style.top = `${newY}px`;
