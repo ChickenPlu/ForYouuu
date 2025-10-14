@@ -73,8 +73,8 @@
     <button id="yesBtn">Cóo 🥰</button>
     <button id="noBtn">Không 😜</button>
 
-    <div class="heart-loader">Anh cám ơn ebe 💞</div>
-    <div class="result-container">Anh cũng yêu ebe nữaaa 😍💘</div>
+    <div class="heart-loader">Anh cám ơn baee 💞</div>
+    <div class="result-container">Anh cũng yêu baee nữaaa 😍💘</div>
   </div>
 
   <script>
