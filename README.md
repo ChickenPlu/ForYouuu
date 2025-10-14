@@ -6,6 +6,7 @@
   <title>Ebe có yêu anh hongg..?</title>
   <style>
     * { box-sizing: border-box; }
+
     body {
       font-family: "Segoe UI", sans-serif;
       background: linear-gradient(135deg, #ffd6e7, #d6f0ff);
@@ -26,23 +27,13 @@
       margin-bottom: 50px;
     }
 
-    .question-container {
+    .button-area {
       position: relative;
       width: 100%;
+      height: 150px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-    }
-
-    .button-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 80px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-      position: relative;
     }
 
     button {
@@ -59,18 +50,22 @@
     #yesBtn {
       background-color: #4caf50;
       color: white;
-      position: relative;
       z-index: 5;
+      position: relative;
     }
 
     #noBtn {
       background-color: #f44336;
       color: white;
       position: absolute;
+      top: 50%;
+      left: 60%;
+      transform: translate(-50%, -50%);
       z-index: 10;
     }
 
-    .heart-loader, .result-container {
+    .heart-loader,
+    .result-container {
       display: none;
       font-size: 6vw;
       color: #ff0077;
@@ -87,41 +82,43 @@
       h2 { font-size: 28px; }
       button { font-size: 20px; padding: 12px 30px; }
       .heart-loader, .result-container { font-size: 24px; }
-      .button-row { gap: 60px; }
     }
   </style>
 </head>
 <body>
-  <div class="question-container">
-    <h2>Ebe có yêu anh hongg..?💖</h2>
+  <h2>Ebe có yêu anh hongg..?💖</h2>
 
-    <div class="button-row" id="buttonRow">
-      <button id="yesBtn">Dạ Có 🥰</button>
-      <button id="noBtn">Không thèmm 😜</button>
-    </div>
-
-    <div class="heart-loader">Cám ơn bé nhaaa 💞</div>
-    <div class="result-container">Anh cũng yêu béeee 😍💘</div>
+  <div class="button-area" id="buttonArea">
+    <button id="yesBtn">Dạ Có 🥰</button>
+    <button id="noBtn">Không thèmm 😜</button>
   </div>
+
+  <div class="heart-loader">Cám ơn bé nhaaa 💞</div>
+  <div class="result-container">Anh cũng yêu béeee 😍💘</div>
 
   <script>
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
     const heartLoader = document.querySelector(".heart-loader");
     const resultContainer = document.querySelector(".result-container");
-    const buttonRow = document.getElementById("buttonRow");
+    const area = document.getElementById("buttonArea");
 
     function moveNoBtn() {
-      const parentRect = buttonRow.getBoundingClientRect();
-      const btnWidth = noBtn.offsetWidth;
-      const btnHeight = noBtn.offsetHeight;
+      const areaRect = area.getBoundingClientRect();
+      const btnW = noBtn.offsetWidth;
+      const btnH = noBtn.offsetHeight;
 
-      // Giới hạn nút đỏ trong khu vực buttonRow (cách mép 10px)
-      const maxX = parentRect.width - btnWidth - 10;
-      const maxY = parentRect.height - btnHeight - 10;
+      // Giới hạn di chuyển trong vùng hiển thị
+      const maxX = areaRect.width - btnW - 10;
+      const maxY = areaRect.height - btnH - 10;
 
-      const newX = Math.random() * maxX;
-      const newY = Math.random() * maxY;
+      // Random vị trí mới (tránh quá gần nút xanh)
+      let newX = Math.random() * maxX;
+      let newY = Math.random() * maxY;
+
+      // Giữ nút trong vùng an toàn giữa màn hình
+      newX = Math.max(0, Math.min(newX, areaRect.width - btnW));
+      newY = Math.max(0, Math.min(newY, areaRect.height - btnH));
 
       noBtn.style.left = `${newX}px`;
       noBtn.style.top = `${newY}px`;
