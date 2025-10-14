@@ -1,4 +1,4 @@
-#hello bae
+#hello bae  
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
@@ -23,50 +23,56 @@
     h2 {
       font-size: 6vw;
       color: #333;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
 
     .question-container {
       position: relative;
       width: 100%;
-      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Hàng chứa 2 nút */
+    .button-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 80px; /* 👈 tăng khoảng cách giữa hai nút */
+      flex-wrap: wrap;
+      margin-top: 10px;
     }
 
     button {
-      position: absolute;
-      padding: 12px 30px;
+      padding: 16px 40px;
       font-size: 5vw;
       border: none;
-      border-radius: 12px;
+      border-radius: 15px;
       cursor: pointer;
       transition: 0.2s;
       user-select: none;
+      min-width: 150px;
     }
 
-    /* Nút "Có" bên trái giữa */
     #yesBtn {
       background-color: #4caf50;
       color: white;
-      left: 35%;
-      top: 50%;
-      transform: translate(-50%, -50%);
     }
 
-    /* Nút "Không" bên phải giữa */
     #noBtn {
       background-color: #f44336;
       color: white;
-      left: 65%;
-      top: 50%;
-      transform: translate(-50%, -50%);
       z-index: 10;
+      position: relative;
     }
 
     .heart-loader, .result-container {
       display: none;
       font-size: 6vw;
       color: #ff0077;
-      margin-top: 30px;
+      margin-top: 40px;
       animation: fadeIn 1s ease-in-out;
     }
 
@@ -77,16 +83,21 @@
 
     @media (min-width: 768px) {
       h2 { font-size: 28px; }
-      button { font-size: 18px; }
+      button { font-size: 20px; padding: 12px 30px; }
       .heart-loader, .result-container { font-size: 24px; }
+      .button-row { gap: 60px; } /* 👈 trên PC cách vừa hơn */
     }
   </style>
 </head>
 <body>
   <div class="question-container">
     <h2>Ebe có yêu anh hongg..?💖</h2>
-    <button id="yesBtn">Dạ Có 🥰</button>
-    <button id="noBtn">Không thèmm 😜</button>
+
+    <div class="button-row">
+      <button id="yesBtn">Dạ Có 🥰</button>
+      <button id="noBtn">Không thèmm 😜</button>
+    </div>
+
     <div class="heart-loader">Cám ơn bé nhaaa 💞</div>
     <div class="result-container">Anh cũng yêu béeee 😍💘</div>
   </div>
@@ -102,21 +113,16 @@
       const maxY = window.innerHeight - noBtn.offsetHeight - 20;
       const newX = Math.random() * maxX;
       const newY = Math.random() * maxY;
+      noBtn.style.position = "absolute";
       noBtn.style.left = `${newX}px`;
       noBtn.style.top = `${newY}px`;
     }
 
-    // Né chuột trên PC
+    // Né chuột (PC)
     noBtn.addEventListener("mouseover", moveNoBtn);
 
-    // Né tay trên điện thoại
+    // Né tay (điện thoại)
     noBtn.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      moveNoBtn();
-    });
-
-    // Dự phòng nếu click
-    noBtn.addEventListener("click", (e) => {
       e.preventDefault();
       moveNoBtn();
     });
@@ -129,6 +135,9 @@
         resultContainer.style.display = "block";
       }, 2000);
     });
+  </script>
+</body>
+</html>
   </script>
 </body>
 </html>
