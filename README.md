@@ -24,43 +24,41 @@
       margin-bottom: 40px;
     }
 
-    .button-box {
+    .question-container {
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 40px; /* khoảng cách giữa 2 nút */
+      width: 100%;
+      height: 80vh;
     }
 
     button {
-      padding: 12px 30px;
+      position: absolute;
+      padding: 10px 25px;
       font-size: 18px;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      user-select: none;
       transition: 0.2s;
     }
 
     #yesBtn {
       background-color: #4caf50;
       color: white;
-      z-index: 2;
+      left: 45%;
+      top: 55%;
     }
 
     #noBtn {
       background-color: #f44336;
       color: white;
-      position: absolute;
-      z-index: 3;
+      left: calc(45% + 120px); /* cách nút xanh 120px, không đè nhau */
+      top: 55%;
     }
 
-    .heart-loader,
-    .result-container {
+    .heart-loader, .result-container {
       display: none;
-      font-size: 22px;
+      font-size: 24px;
       color: #ff0077;
-      margin-top: 30px;
+      margin-top: 20px;
       animation: fadeIn 1s ease-in-out;
     }
 
@@ -71,15 +69,14 @@
   </style>
 </head>
 <body>
-  <h2>Ebe có yêu tớ hongg..? 💖</h2>
-
-  <div class="button-box">
+  <div class="question-container">
+    <h2>Ebe có yêu tớ hongg..? 💖</h2>
     <button id="yesBtn">Có 🥰</button>
     <button id="noBtn">Không 😜</button>
-  </div>
 
-  <div class="heart-loader">Anh cám ơn ebe 💞</div>
-  <div class="result-container">Anh cũng yêu ebe nữaaa 😍💘</div>
+    <div class="heart-loader">anh cám ơn ebe 💞</div>
+    <div class="result-container">anh cũng yêu ebe nữaaa 😍💘</div>
+  </div>
 
   <script>
     const noBtn = document.getElementById("noBtn");
@@ -87,34 +84,25 @@
     const heartLoader = document.querySelector(".heart-loader");
     const resultContainer = document.querySelector(".result-container");
 
-    let dx = 4; // tốc độ chạy ngang
-    let dy = 3; // tốc độ chạy dọc
-
-    // Đặt vị trí ban đầu
-    let x = window.innerWidth / 2 + 100;
-    let y = window.innerHeight / 2;
-
-    function moveNoBtn() {
+    // Hàm random vị trí, tránh ra ngoài
+    function moveButton() {
       const btnWidth = noBtn.offsetWidth;
       const btnHeight = noBtn.offsetHeight;
-
-      x += dx;
-      y += dy;
-
-      // Va chạm rìa màn hình → bật ngược hướng
-      if (x + btnWidth >= window.innerWidth || x <= 0) dx = -dx;
-      if (y + btnHeight >= window.innerHeight || y <= 0) dy = -dy;
-
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-
-      requestAnimationFrame(moveNoBtn);
+      const maxX = window.innerWidth - btnWidth - 10;
+      const maxY = window.innerHeight - btnHeight - 10;
+      const newX = Math.floor(Math.random() * maxX);
+      const newY = Math.floor(Math.random() * maxY);
+      noBtn.style.left = `${newX}px`;
+      noBtn.style.top = `${newY}px`;
     }
 
-    // Bắt đầu chuyển động
-    moveNoBtn();
+    // Khi rê chuột (PC)
+    noBtn.addEventListener("mouseover", moveButton);
 
-    // Khi nhấn nút "Có"
+    // Khi chạm (điện thoại)
+    noBtn.addEventListener("touchstart", moveButton);
+
+    // Khi bấm "Có"
     yesBtn.addEventListener("click", () => {
       heartLoader.style.display = "block";
       setTimeout(() => {
