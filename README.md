@@ -70,7 +70,7 @@
 <body>
   <div class="question-container">
     <h2>Ebe có yêu tớ hongg..? 💖</h2>
-    <button id="yesBtn">Có 🥰</button>
+    <button id="yesBtn">Cóo 🥰</button>
     <button id="noBtn">Không 😜</button>
 
     <div class="heart-loader">Anh cám ơn ebe 💞</div>
