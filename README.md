@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 # Hello bae
 <html lang="vi">
 <head>
