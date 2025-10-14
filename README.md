@@ -90,7 +90,7 @@
 
   <div class="button-area" id="buttonArea">
     <button id="yesBtn">Dạ Có 🥰</button>
-    <button id="noBtn">Không thèm 😜</button>
+    <button id="noBtn">Không thèmm 😜</button>
   </div>
 
   <div class="heart-loader">Cám ơn bé nhaaa 💞</div>
@@ -104,21 +104,23 @@
     const area = document.getElementById("buttonArea");
 
     function moveNoBtn() {
-      const areaRect = area.getBoundingClientRect();
+      const areaRect = document.body.getBoundingClientRect();
       const btnW = noBtn.offsetWidth;
       const btnH = noBtn.offsetHeight;
 
-      // Giới hạn di chuyển trong vùng hiển thị
-      const maxX = areaRect.width - btnW - 10;
-      const maxY = areaRect.height - btnH - 10;
+      // Lề an toàn 2cm (~20px trên hầu hết thiết bị)
+      const margin = 20;
 
-      // Random vị trí mới (tránh quá gần nút xanh)
+      const maxX = areaRect.width - btnW - margin;
+      const maxY = areaRect.height - btnH - margin;
+
+      // Random vị trí xa hơn (tăng phạm vi bay)
       let newX = Math.random() * maxX;
       let newY = Math.random() * maxY;
 
-      // Giữ nút trong vùng an toàn giữa màn hình
-      newX = Math.max(0, Math.min(newX, areaRect.width - btnW));
-      newY = Math.max(0, Math.min(newY, areaRect.height - btnH));
+      // Giữ nút trong vùng an toàn
+      newX = Math.max(margin, Math.min(newX, areaRect.width - btnW - margin));
+      newY = Math.max(margin, Math.min(newY, areaRect.height - btnH - margin));
 
       noBtn.style.left = `${newX}px`;
       noBtn.style.top = `${newY}px`;
