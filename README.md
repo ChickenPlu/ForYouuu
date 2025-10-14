@@ -1,11 +1,13 @@
-#hello baee <!DOCTYPE html>
+# hello baee
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ebe có yêu anh hongg..?</title>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       font-family: "Segoe UI", sans-serif;
@@ -18,7 +20,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      touch-action: none;
+      touch-action: none; /* Ngăn zoom/kéo trang khi chạm */
     }
 
     h2 {
@@ -27,17 +29,15 @@
       margin-bottom: 30px;
     }
 
-    .button-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 40px; /* khoảng cách giữa 2 nút */
+    .question-container {
       position: relative;
       width: 100%;
-      margin-top: 20px;
+      height: 70vh;
+      overflow: visible;
     }
 
     button {
+      position: absolute;
       padding: 12px 30px;
       font-size: 5vw;
       border: none;
@@ -45,17 +45,20 @@
       cursor: pointer;
       transition: 0.2s;
       user-select: none;
-      position: relative;
     }
 
     #yesBtn {
       background-color: #4caf50;
       color: white;
+      left: 40%;
+      top: 60%;
     }
 
     #noBtn {
       background-color: #f44336;
       color: white;
+      left: 55%;
+      top: 60%;
       z-index: 10;
     }
 
@@ -64,32 +67,42 @@
       display: none;
       font-size: 6vw;
       color: #ff0077;
-      margin-top: 30px;
+      margin-top: 20px;
       animation: fadeIn 1s ease-in-out;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
 
     @media (min-width: 768px) {
-      h2 { font-size: 28px; }
-      button { font-size: 18px; }
-      .heart-loader, .result-container { font-size: 24px; }
+      h2 {
+        font-size: 28px;
+      }
+      button {
+        font-size: 18px;
+      }
+      .heart-loader,
+      .result-container {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 <body>
-  <h2>Ebe có yêu anh hongg..?💖</h2>
-
-  <div class="button-container">
+  <div class="question-container">
+    <h2>Ebe có yêu anh hongg..?💖</h2>
     <button id="yesBtn">Dạ Có 🥰</button>
     <button id="noBtn">Không thèmm 😜</button>
-  </div>
 
-  <div class="heart-loader">Cám ơn bé nhaaa 💞</div>
-  <div class="result-container">Anh cũng yêu béeee 😍💘</div>
+    <div class="heart-loader">cám ơn bé nhaaa 💞</div>
+    <div class="result-container">anh cũng yêu béeee 😍💘</div>
+  </div>
 
   <script>
     const noBtn = document.getElementById("noBtn");
@@ -98,30 +111,23 @@
     const resultContainer = document.querySelector(".result-container");
 
     function moveNoBtn() {
-      const btnWidth = noBtn.offsetWidth;
-      const btnHeight = noBtn.offsetHeight;
-
-      // Giới hạn vùng di chuyển trong cửa sổ
-      const maxX = window.innerWidth - btnWidth - 20;
-      const maxY = window.innerHeight - btnHeight - 20;
-      const minX = 10;
-      const minY = 80;
-
-      const newX = Math.random() * (maxX - minX) + minX;
-      const newY = Math.random() * (maxY - minY) + minY;
-
-      // Chuyển sang vị trí tuyệt đối
-      noBtn.style.position = "absolute";
+      const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+      const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+      const newX = Math.random() * maxX;
+      const newY = Math.random() * maxY;
       noBtn.style.left = `${newX}px`;
       noBtn.style.top = `${newY}px`;
     }
 
-    // Khi rê chuột hoặc chạm vào nút "Không" → chạy trốn
+    // PC dùng mouseover
     noBtn.addEventListener("mouseover", moveNoBtn);
+
+    // iPhone/Android dùng touchstart & click fallback
     noBtn.addEventListener("touchstart", (e) => {
-      e.preventDefault();
+      e.preventDefault(); // tránh Safari hiểu là cuộn
       moveNoBtn();
     });
+
     noBtn.addEventListener("click", (e) => {
       e.preventDefault();
       moveNoBtn();
