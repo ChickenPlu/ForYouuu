@@ -144,6 +144,6 @@
         resultContainer.style.display = "block";
       }, 2000);
     });
-  </script>
-</body>
-</html>
+   </script> 
+ </body> 
+ </html> 
