@@ -96,33 +96,29 @@
   <div class="heart-loader">Cám ơn bé nhaaa 💞</div>
   <div class="result-container">Anh cũng yêu béeee 😍💘</div>
 
-  <script>
+ <script>
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
     const heartLoader = document.querySelector(".heart-loader");
     const resultContainer = document.querySelector(".result-container");
 
     function moveNoBtn() {
-      const areaRect = document.body.getBoundingClientRect();
+      const bodyRect = document.body.getBoundingClientRect();
       const btnW = noBtn.offsetWidth;
       const btnH = noBtn.offsetHeight;
+      const safe = 20; // cách rìa màn hình ít nhất 20px
 
-      // Giới hạn cách mép màn hình đúng 1 cm
-      const margin = 1; // cm
-      const marginPx = margin * (window.innerWidth / (document.documentElement.clientWidth / 96)); 
-      // đổi cm sang pixel (1 inch = 96px, 1cm ≈ 37.8px)
-      const safe = 37.8 * margin; // an toàn: 1cm ≈ 37.8px
-
-      const maxX = areaRect.width - btnW - safe;
-      const maxY = areaRect.height - btnH - safe;
+      const maxX = bodyRect.width - btnW - safe;
+      const maxY = bodyRect.height - btnH - safe;
 
       let newX = Math.random() * maxX;
       let newY = Math.random() * maxY;
 
-      // Giữ nút trong vùng an toàn cách mép 1 cm
-      newX = Math.max(safe, Math.min(newX, areaRect.width - btnW - safe));
-      newY = Math.max(safe, Math.min(newY, areaRect.height - btnH - safe));
+      // giữ trong vùng an toàn
+      newX = Math.max(safe, Math.min(newX, maxX));
+      newY = Math.max(safe, Math.min(newY, maxY));
 
+      noBtn.style.position = "absolute";
       noBtn.style.left = `${newX}px`;
       noBtn.style.top = `${newY}px`;
     }
@@ -144,6 +140,9 @@
         resultContainer.style.display = "block";
       }, 2000);
     });
+  </script>
+</body>
+</html>
   </script>
 </body>
 </html>
