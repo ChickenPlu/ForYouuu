@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-Chao em Be
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
@@ -30,15 +29,16 @@ Chao em Be
       margin-bottom: 30px;
     }
 
-    .question-container {
+    .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px; /* khoảng cách giữa 2 nút */
+      margin-top: 40px;
       position: relative;
-      width: 100%;
-      height: 70vh;
-      overflow: visible;
     }
 
     button {
-      position: absolute;
       padding: 12px 30px;
       font-size: 5vw;
       border: none;
@@ -46,20 +46,17 @@ Chao em Be
       cursor: pointer;
       transition: 0.2s;
       user-select: none;
+      position: relative;
     }
 
     #yesBtn {
       background-color: #4caf50;
       color: white;
-      left: 40%;
-      top: 60%;
     }
 
     #noBtn {
       background-color: #f44336;
       color: white;
-      left: 55%;
-      top: 60%;
       z-index: 10;
     }
 
@@ -68,17 +65,13 @@ Chao em Be
       display: none;
       font-size: 6vw;
       color: #ff0077;
-      margin-top: 20px;
+      margin-top: 30px;
       animation: fadeIn 1s ease-in-out;
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @media (min-width: 768px) {
@@ -96,14 +89,15 @@ Chao em Be
   </style>
 </head>
 <body>
-  <div class="question-container">
-    <h2>Ebe có yêu anh hongg..?💖</h2>
-    <button id="yesBtn">Dạ Có 🥰</button>
-    <button id="noBtn">Không thèmm 😜</button>
+  <h2>Ebe có yêu anh hongg..? 💖</h2>
 
-    <div class="heart-loader">cám ơn bé nhaaa 💞</div>
-    <div class="result-container">anh cũng yêu béeee 😍💘</div>
+  <div class="buttons">
+    <button id="yesBtn">Dạ Có 🥰</button>
+    <button id="noBtn">Không thèm 😜</button>
   </div>
+
+  <div class="heart-loader">Cám ơn bé nhaaa 💞</div>
+  <div class="result-container">Anh cũng yêu béeee 😍💘</div>
 
   <script>
     const noBtn = document.getElementById("noBtn");
@@ -116,19 +110,17 @@ Chao em Be
       const maxY = window.innerHeight - noBtn.offsetHeight - 20;
       const newX = Math.random() * maxX;
       const newY = Math.random() * maxY;
+      noBtn.style.position = "absolute";
       noBtn.style.left = `${newX}px`;
       noBtn.style.top = `${newY}px`;
     }
 
-    // PC dùng mouseover
+    // Khi rê hoặc chạm vào nút "Không" → chạy trốn
     noBtn.addEventListener("mouseover", moveNoBtn);
-
-    // iPhone/Android dùng touchstart & click fallback
     noBtn.addEventListener("touchstart", (e) => {
-      e.preventDefault(); // tránh Safari hiểu là cuộn
+      e.preventDefault();
       moveNoBtn();
     });
-
     noBtn.addEventListener("click", (e) => {
       e.preventDefault();
       moveNoBtn();
