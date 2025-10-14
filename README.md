@@ -1,15 +1,11 @@
-#hello baee 
-<!DOCTYPE html>
+#hello baee <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ebe có yêu anh hongg..?</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       font-family: "Segoe UI", sans-serif;
       background: linear-gradient(135deg, #ffd6e7, #d6f0ff);
@@ -21,20 +17,19 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      touch-action: none; /* Ngăn zoom/kéo trang khi chạm */
+      touch-action: none;
     }
 
     h2 {
       font-size: 6vw;
       color: #333;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     .question-container {
       position: relative;
       width: 100%;
-      height: 70vh;
-      overflow: visible;
+      height: 60vh;
     }
 
     button {
@@ -48,50 +43,42 @@
       user-select: none;
     }
 
+    /* Nút "Có" bên trái giữa */
     #yesBtn {
       background-color: #4caf50;
       color: white;
-      left: 40%;
-      top: 60%;
+      left: 35%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
 
+    /* Nút "Không" bên phải giữa */
     #noBtn {
       background-color: #f44336;
       color: white;
-      left: 55%;
-      top: 60%;
+      left: 65%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       z-index: 10;
     }
 
-    .heart-loader,
-    .result-container {
+    .heart-loader, .result-container {
       display: none;
       font-size: 6vw;
       color: #ff0077;
-      margin-top: 20px;
+      margin-top: 30px;
       animation: fadeIn 1s ease-in-out;
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @media (min-width: 768px) {
-      h2 {
-        font-size: 28px;
-      }
-      button {
-        font-size: 18px;
-      }
-      .heart-loader,
-      .result-container {
-        font-size: 24px;
-      }
+      h2 { font-size: 28px; }
+      button { font-size: 18px; }
+      .heart-loader, .result-container { font-size: 24px; }
     }
   </style>
 </head>
@@ -100,9 +87,8 @@
     <h2>Ebe có yêu anh hongg..?💖</h2>
     <button id="yesBtn">Dạ Có 🥰</button>
     <button id="noBtn">Không thèmm 😜</button>
-
-    <div class="heart-loader">cám ơn bé nhaaa 💞</div>
-    <div class="result-container">anh cũng yêu béeee 😍💘</div>
+    <div class="heart-loader">Cám ơn bé nhaaa 💞</div>
+    <div class="result-container">Anh cũng yêu béeee 😍💘</div>
   </div>
 
   <script>
@@ -120,15 +106,16 @@
       noBtn.style.top = `${newY}px`;
     }
 
-    // PC dùng mouseover
+    // Né chuột trên PC
     noBtn.addEventListener("mouseover", moveNoBtn);
 
-    // iPhone/Android dùng touchstart & click fallback
+    // Né tay trên điện thoại
     noBtn.addEventListener("touchstart", (e) => {
-      e.preventDefault(); // tránh Safari hiểu là cuộn
+      e.preventDefault();
       moveNoBtn();
     });
 
+    // Dự phòng nếu click
     noBtn.addEventListener("click", (e) => {
       e.preventDefault();
       moveNoBtn();
